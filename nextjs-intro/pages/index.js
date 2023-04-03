@@ -5,7 +5,7 @@ import { useEffect, useStat } from 'react';
 import { useRouter } from 'next/router';
 import Seo from '../components/Seo';
 import Link from 'next/link';
-
+/* index 부터 다시 */
 const API_KEY = '818f60bebf8a1520d73de560b6a42726';
 export default function Home({ results }) {
   /* const [movies, setMovies] = useState([]);
