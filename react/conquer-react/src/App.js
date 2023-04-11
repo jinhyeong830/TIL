@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "./logo.svg";
+import List from "./List";
 // import "./App.css";
 
 const btnStyle = {
@@ -58,6 +59,8 @@ function App() {
 				영어로
 			</button>
 			<span>{state.teacher}</span>
+
+			<List />
 		</div>
 	);
 }
