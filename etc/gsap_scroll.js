@@ -2,42 +2,84 @@
 // 플러그인 사용 전 스크롤 트리거 사용하기
 // scrollTrigger 하나의 애니메이션 내부에 두는 방법
 gsap.from(".box", {
-	scrollTrigger: {
-		trigger: ".box",
-		// 앞: 요소 기준, 뒤: 브라우저 기준 start
-		start: "top 80%",
-		end: "100% 50%",
-		scrub: 1, // 숫자가 커지면 더 매끄러워짐, 되돌아가는 기능
-		//false 일 때는 첫번째 스크롤 할 때만 애니메이션 동작
-		markers: true,
-		// pin: true,
-	},
-	y: 800, //시작 위치가 top 800px인 것
-	opacity: 0,
+  scrollTrigger: {
+    trigger: ".box",
+    // 앞: 요소 기준, 뒤: 브라우저 기준 start
+    start: "top 80%",
+    end: "100% 50%",
+    scrub: 1, // 숫자가 커지면 더 매끄러워짐, 되돌아가는 기능
+    //false 일 때는 첫번째 스크롤 할 때만 애니메이션 동작
+    // markers: true,
+    // pin: true,
+  },
+  y: 800, //시작 위치가 top 800px인 것
+  opacity: 0,
 });
 
 // 서로 다른 애니메이션..
 gsap.to(".box2", {
-	scrollTrigger: {
-		trigger: ".box2",
-		start: "top top",
-		// end: "bottom 50%",
-		scrub: 1,
-		// markers: true,
-	},
-	rotate: 720,
-	x: 500,
+  scrollTrigger: {
+    trigger: ".box2",
+    start: "top top",
+    // end: "bottom 50%",
+    scrub: 1,
+    // markers: true,
+  },
+  rotate: 720,
+  x: 500,
 });
 
 // 하나의 타임라인에 gsap을 사용하기 위해선
 // gsap.registerPlugin(ScrollTrigger);
 const tl = gsap.timeline();
 
+// scrollTrigger 내부에 구성하기
+// 똑같이는 만들 수 있지만 timeline을 쓰는 것 처럼 차례대로 진행시킬 수는 없음?
+/* tl.to(".circle1", {
+  scrollTrigger: {
+    animation: tl,
+    trigger: "section",
+    start: "top 50%",
+    end: "bottom 40%",
+    markers: true,
+    scrub: 1,
+  },
+  scale: 2,
+  opacity: 0,
+}).to(".circle2", {
+  scrollTrigger: {
+    animation: tl,
+    trigger: "section",
+    start: "top 50%",
+    end: "bottom 40%",
+    markers: true,
+    scrub: 1,
+  },
+  scale: 2,
+  opacity: 0,
+}); */
+
+// 따로 사용
 tl.to(".circle1", {
-	scrollTrigger: ".container",
-	start: "top top",
-	end: "bottom bottom",
-	markers: true,
+  scale: 2,
+  opacity: 0,
+})
+  .to(".circle2", {
+    scale: 2,
+    opacity: 0,
+  })
+  .to(".circle3", {
+    scale: 2,
+    opacity: 0,
+  });
+ScrollTrigger.create({
+  animation: tl,
+  trigger: "section",
+  start: "top top",
+  end: "bottom 40%",
+  markers: true,
+  scrub: 1,
+  pin: true,
 });
 // gsap.to(".box", {
 // 	scrollTrigger: ".box",
